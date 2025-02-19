@@ -1,13 +1,14 @@
 <?php get_header(); ?>
-<main class="container mx-auto px-4 py-8 max-w-4xl">
+65;7006;1c11;rgb:1e1e/1e1e/1e1e<main class="container mx-auto px-4 py-8 max-w-4xl">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
             <?php if (has_post_thumbnail()) : ?>
-                <div class="absolute inset-0 z-0 opacity-10 flex justify-end items-center">
-                    <?php the_post_thumbnail('medium', [
-                        'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4'
-                    ]); ?>
-                </div>
+<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
+    <?php the_post_thumbnail('thumbnail', [
+        'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
+	'loading' => 'eager'
+    ]); ?>
+</div>
             <?php endif; ?>
             <div class="relative z-10">
                 <h2 class="text-2xl font-bold mb-6 underline">

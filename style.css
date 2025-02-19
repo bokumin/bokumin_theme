@@ -34,3 +34,9 @@ Text Domain: bokumin
     background-color: #4b5563;
     color: white;
 }
+
+.wp-post-image {
+    margin-left: auto !important;
+    right: 1rem !important; 
+    position: relative;
+}
