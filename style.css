@@ -1,0 +1,36 @@
+/*
+Theme Name: bokumin
+Theme URI: https://bokumin45.server-on.net
+Author: bokumin
+Author URI: https://bokumin45.server-on.net
+Description: for only me
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bokumin
+*/
+
+.pagination ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+}
+
+.pagination ul li {
+    margin: 0;
+}
+
+.pagination ul li a,
+.pagination ul li span {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    display: inline-block;
+}
+
+.pagination ul li span.current {
+    background-color: #4b5563;
+    color: white;
+}
