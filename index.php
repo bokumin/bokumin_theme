@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-65;7006;1c11;rgb:1e1e/1e1e/1e1e<main class="container mx-auto px-4 py-8 max-w-4xl">
+<main class="container mx-auto px-4 py-8 max-w-4xl">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
             <?php if (has_post_thumbnail()) : ?>
