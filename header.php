@@ -23,6 +23,14 @@
 							  mb-6 underline">
         Blog
     </a>
+        <span class="text-gray-400 text-2xl mb-6">/</span>
+    <a href="https://bokumin45.server-on.net/others" class="text-gray-600       
+                                                          hover:text-gray-900   
+                                                          text-2xl font-bold    
+                                                          mb-6 underline">
+        Others
+    </a>
+
 </div>
 
     </header>
