@@ -26,37 +26,39 @@
     </div>
     
     <?php if (have_posts()) : ?>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <?php while (have_posts()) : the_post(); ?>
-                <article class="bg-white p-6 rounded-lg shadow">
-                    <?php if (has_post_thumbnail()) : ?>
-                        <div class="mb-4">
-                            <?php the_post_thumbnail('medium', ['class' => 'w-full h-48 object-cover rounded']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <h2 class="text-xl font-semibold mb-2">
-                        <a href="<?php the_permalink(); ?>" class="hover:text-blue-600">
-                            <?php the_title(); ?>
-                        </a>
+        <?php while (have_posts()) : the_post(); ?>
+            <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
+                <?php if (has_post_thumbnail()) : ?>
+                    <div class="absolute inset-0 z-0 opacity-10 flex justify-end items-center">
+                        <?php the_post_thumbnail('large', [
+                            'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4'
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
+                
+                <div class="relative z-10">
+                    <h2 class="text-2xl font-bold mb-6 underline">
+                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                     </h2>
+                    
+                    <div class="text-sm text-gray-500 mb-2">
+                        <time datetime="<?php echo get_the_date('c'); ?>">
+                            <?php echo get_the_date(); ?>
+                        </time>
+                    </div>
                     
                     <div class="text-gray-600 mb-4">
                         <?php echo wp_trim_words(get_the_excerpt(), 20); ?>
                     </div>
-                    
-                    <div class="text-sm text-gray-500">
-                        <?php echo get_the_date(); ?>
-                    </div>
-                </article>
-            <?php endwhile; ?>
-        </div>
+                </div>
+            </article>
+        <?php endwhile; ?>
         
         <div class="mt-8 flex justify-center">
             <?php the_posts_pagination(array(
                 'mid_size' => 2,
-                'prev_text' => '前へ',
-                'next_text' => '次へ',
+                'prev_text' => 'Prev',
+                'next_text' => 'Next',
                 'class' => 'flex gap-2'
             )); ?>
         </div>
