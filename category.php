@@ -28,12 +28,13 @@
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
-                <?php if (has_post_thumbnail()) : ?>
-                    <div class="absolute inset-0 z-0 opacity-10 flex justify-end items-center">
-                        <?php the_post_thumbnail('large', [
-                            'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4'
-                        ]); ?>
-                    </div>
+		     <?php if (has_post_thumbnail()) : ?>
+<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
+    <?php the_post_thumbnail('thumbnail', [
+        'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
+	'loading' => 'eager'
+    ]); ?>
+</div>
                 <?php endif; ?>
                 
                 <div class="relative z-10">
