@@ -2,18 +2,32 @@
 <main class="container mx-auto px-4 py-8 max-w-4xl">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
-            <?php if (has_post_thumbnail()) : ?>
-<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
+
+  <?php if (has_post_thumbnail()) : ?>
+<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: flex-end;">
     <?php the_post_thumbnail('thumbnail', [
         'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
-	'loading' => 'eager'
+    'loading' => 'eager'
     ]); ?>
 </div>
             <?php endif; ?>
+
             <div class="relative z-10">
                 <h2 class="text-2xl font-bold mb-6 underline">
                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                 </h2>
+
+
+<div class="text-gray-600 mb-4">
+    <?php 
+    $blocks = parse_blocks(get_the_content());
+    $output = '';
+    $output .= render_block($blocks[0]);
+    echo wp_trim_words($output, 80, '...');
+
+    ?>
+</div>
+
 <div class="text-sm text-gray-500 mb-2">
     <time datetime="<?php echo get_the_date('c'); ?>">
         <?php echo get_the_date(); ?>
@@ -47,10 +61,8 @@
     }
     ?>
 </div>
-                <div class="text-gray-600 mb-4">
-                    <?php the_excerpt(); ?>
-                </div>
-            </div>
+</div>
+
         </article>
     <?php endwhile; ?>
     
