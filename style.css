@@ -40,3 +40,18 @@ Text Domain: bokumin
     right: 1rem !important; 
     position: relative;
 }
+
+
+.prose ul {
+    list-style-type: disc !important;
+    padding-left: 2rem !important;
+}
+
+.prose ol {
+    list-style-type: decimal !important;
+    padding-left: 2rem !important;
+}
+
+.prose li {
+    margin-bottom: 0.5rem !important;
+}

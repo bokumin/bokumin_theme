@@ -57,9 +57,9 @@
                 $content = str_replace('<pre>', '<pre class="my-12">', $content);
                 
                 // リストの前後の間隔を広げる
-		$content = str_replace('<ul>', '<ul class="my-8 list-disc pl-5">', $content);
-		$content = str_replace('<ol>', '<ol class="my-8 list-decimal pl-5">', $content);
-                
+$content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; padding-left: 2rem;">', $content);
+$content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
+
                 // リンクのスタイルを変更
                 $content = str_replace('<a', '<a class="text-teal-500 hover:text-teal-700 underline"', $content);
                 
