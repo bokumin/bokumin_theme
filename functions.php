@@ -41,7 +41,16 @@ function tailwind_paginate_links($link) {
     
     return $link;
 }
+function add_empty_block_after_each_block($content) {
+    $pattern = '/<\/figure>|<\/blockquote>|<\/p>|<\/h[1-6]>|<\/ul>|<\/ol>|<\/pre>|<hr[^>]*>|<\/details>|<\/summary>/i';
 
+    $replacement = '$0<p class="mb-2 leading-relaxed">&nbsp;</p>';
+    
+    $content = preg_replace($pattern, $replacement, $content);
+    
+    return $content;
+}
+add_filter('the_content', 'add_empty_block_after_each_block', 20); 
 function custom_posts_per_page($query) {
     if (!is_admin() && $query->is_main_query()) {
         $query->set('posts_per_page', 8);
