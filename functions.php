@@ -57,3 +57,21 @@ function custom_posts_per_page($query) {
     }
 }
 add_action('pre_get_posts', 'custom_posts_per_page');
+function disable_unused_jetpack_assets() {
+    wp_dequeue_style('jetpack-carousel');
+    wp_dequeue_style('jetpack-sharing');
+    wp_dequeue_style('jetpack-related-posts');
+    wp_dequeue_style('jetpack-tiled-gallery');
+    wp_dequeue_style('jetpack-subscriptions');
+    wp_dequeue_style('jetpack-contact-form');
+    wp_dequeue_style('jetpack-widgets');
+    wp_dequeue_style('jetpack-infinite-scroll');
+    wp_dequeue_style('jetpack-slideshow');
+    wp_dequeue_style('jetpack-likes');
+    wp_dequeue_style('jetpack-comments');
+    wp_dequeue_style('jetpack-video');
+    wp_dequeue_style('jetpack-social-menu');
+    wp_dequeue_style('jetpack-blocks');
+
+}
+add_action('wp_enqueue_scripts', 'disable_unused_jetpack_assets', 100);
