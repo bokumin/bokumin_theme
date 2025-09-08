@@ -1,9 +1,7 @@
 <?php
 function bokumin_theme_styles() {
     wp_enqueue_style('bokumin-theme-style', get_stylesheet_uri());
-    
     wp_enqueue_style('tailwindcss', '/css/tailwind.min.css');
-    
     wp_enqueue_style('font-awesome', '/css/fontawesome/all.min.css');
 }
 add_action('wp_enqueue_scripts', 'bokumin_theme_styles');
@@ -21,7 +19,6 @@ function bokumin_theme_setup() {
 }
 add_action('after_setup_theme', 'bokumin_theme_setup');
 
-
 add_filter('navigation_markup_template', 'tailwind_pagination', 10, 2);
 function tailwind_pagination($template, $class) {
     return '
@@ -33,45 +30,62 @@ function tailwind_pagination($template, $class) {
 
 add_filter('paginate_links', 'tailwind_paginate_links');
 function tailwind_paginate_links($link) {
-     if (strpos($link, 'current') !== false) {
+    if (strpos($link, 'current') !== false) {
         $link = str_replace('page-numbers', 'page-numbers bg-blue-500 text-white border-blue-500 px-4 py-2 rounded-md', $link);
     } else {
         $link = str_replace('page-numbers', 'page-numbers bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 px-4 py-2 rounded-md', $link);
     }
-    
     return $link;
 }
+
 function add_empty_block_after_each_block($content) {
     $pattern = '/<\/figure>|<\/blockquote>|<\/p>|<\/h[1-6]>|<\/ul>|<\/ol>|<\/pre>|<hr[^>]*>|<\/details>|<\/summary>/i';
-
     $replacement = '$0<p class="mb-2 leading-relaxed">&nbsp;</p>';
-    
     $content = preg_replace($pattern, $replacement, $content);
-    
     return $content;
 }
-add_filter('the_content', 'add_empty_block_after_each_block', 20); 
+add_filter('the_content', 'add_empty_block_after_each_block', 20);
+
 function custom_posts_per_page($query) {
     if (!is_admin() && $query->is_main_query()) {
         $query->set('posts_per_page', 8);
     }
 }
 add_action('pre_get_posts', 'custom_posts_per_page');
-function disable_unused_jetpack_assets() {
-    wp_dequeue_style('jetpack-carousel');
-    wp_dequeue_style('jetpack-sharing');
-    wp_dequeue_style('jetpack-related-posts');
-    wp_dequeue_style('jetpack-tiled-gallery');
-    wp_dequeue_style('jetpack-subscriptions');
-    wp_dequeue_style('jetpack-contact-form');
-    wp_dequeue_style('jetpack-widgets');
-    wp_dequeue_style('jetpack-infinite-scroll');
-    wp_dequeue_style('jetpack-slideshow');
-    wp_dequeue_style('jetpack-likes');
-    wp_dequeue_style('jetpack-comments');
-    wp_dequeue_style('jetpack-video');
-    wp_dequeue_style('jetpack-social-menu');
-    wp_dequeue_style('jetpack-blocks');
 
-}
-add_action('wp_enqueue_scripts', 'disable_unused_jetpack_assets', 100);
+add_filter('jpeg_quality', function($quality, $context) {
+    return 50;
+}, 10, 2);
+
+add_filter('wp_generate_attachment_metadata', function($metadata, $attachment_id, $context) {
+    if ($context !== 'create') {
+        return $metadata;
+    }
+    
+    $file = get_attached_file($attachment_id);
+    $mime_type = get_post_mime_type($attachment_id);
+    
+    if ($mime_type === 'image/png' && extension_loaded('gd')) {
+        $image = imagecreatefrompng($file);
+        if ($image) {
+            imagepng($image, $file, 9);
+            imagedestroy($image);
+        }
+    }
+    
+    return $metadata;
+}, 10, 3);
+
+add_filter('wp_get_attachment_image_attributes', function($attr, $attachment, $size) {
+    if (!is_admin()) {
+        $attr['loading'] = 'lazy';
+        $attr['decoding'] = 'async';
+    }
+    return $attr;
+}, 10, 3);
+
+add_filter('upload_mimes', function($mime_types) {
+    $mime_types['webp'] = 'image/webp';
+    return $mime_types;
+});
+?>

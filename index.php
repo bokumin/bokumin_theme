@@ -7,7 +7,7 @@
 <div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: flex-end;">
     <?php the_post_thumbnail('thumbnail', [
         'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
-    'loading' => 'eager'
+    'loading' => 'lazy'
     ]); ?>
 </div>
             <?php endif; ?>
