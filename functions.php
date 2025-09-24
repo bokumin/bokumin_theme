@@ -2,7 +2,6 @@
 function bokumin_theme_styles() {
     wp_enqueue_style('bokumin-theme-style', get_stylesheet_uri());
     wp_enqueue_style('tailwindcss', '/css/tailwind.min.css');
-    wp_enqueue_style('font-awesome', '/css/fontawesome/all.min.css');
 }
 add_action('wp_enqueue_scripts', 'bokumin_theme_styles');
 

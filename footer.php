@@ -19,40 +19,6 @@
                     </div>
                 </form>
             </div>
-            <div>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="<?php 
-                            $categories = get_categories();
-                            if (!empty($categories)) {
-                                echo get_category_link($categories[0]->term_id);
-                            } else {
-                                echo '#';
-                            }
-                        ?>" class="text-gray-400 hover:text-white underline">
-                            Categories
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php 
-                            $tags = get_tags();
-                            if (!empty($tags)) {
-                                echo get_tag_link($tags[0]->term_id);
-                            } else {
-                                echo '#';
-                            }
-                        ?>" class="text-gray-400 hover:text-white underline">
-                            Tags
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://bokumin45.server-on.net/privacy-policy" class="text-gray-400 hover:text-white underline">
-                            Privacy-policy
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
             <p data-i18n="copyright">&copy; 2024 bokumin. All rights reserved.</p>
         </div>
