@@ -6,8 +6,13 @@
     </h1>
 
     <div class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Tags</h2>
-        <div class="flex flex-wrap gap-2">
+        <button id="toggleTags" class="flex items-center gap-2 text-xl font-semibold mb-4 hover:text-blue-600 transition-colors">
+            <span>Tags List</span>
+            <svg id="toggleIcon" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <div id="tagsContainer" class="flex flex-wrap gap-2">
             <?php
             $tags = get_tags(array(
                 'hide_empty' => true
@@ -28,15 +33,14 @@
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
-
-<?php if (has_post_thumbnail()) : ?>
-<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
-    <?php the_post_thumbnail('thumbnail', [
-        'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
-	'loading' => 'eager'
-    ]); ?>
-</div>
-            <?php endif; ?>
+                <?php if (has_post_thumbnail()) : ?>
+                    <div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
+                        <?php the_post_thumbnail('thumbnail', [
+                            'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
+                            'loading' => 'eager'
+                        ]); ?>
+                    </div>
+                <?php endif; ?>
                 
                 <div class="relative z-10">
                     <h2 class="text-2xl font-bold mb-6 underline">
@@ -68,5 +72,26 @@
         <p class="text-gray-600">not found</p>
     <?php endif; ?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('toggleTags');
+    const container = document.getElementById('tagsContainer');
+    const icon = document.getElementById('toggleIcon');
+    
+    container.style.display = 'none';
+    icon.style.transform = 'rotate(-90deg)';
+    
+    toggleBtn.addEventListener('click', function() {
+        if (container.style.display === 'none') {
+            container.style.display = 'flex';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            container.style.display = 'none';
+            icon.style.transform = 'rotate(-90deg)';
+        }
+    });
+});
+</script>
 
 <?php get_footer(); ?>

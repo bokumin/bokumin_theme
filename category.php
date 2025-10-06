@@ -2,22 +2,27 @@
 
 <div class="container mx-auto px-4 py-8 max-w-4xl">
     <h1 class="text-3xl font-bold mb-8">
-        <?php single_tag_title('Tag: '); ?>
+        <?php single_cat_title('Category: '); ?>
     </h1>
 
     <div class="mb-8">
-        <h2 class="text-xl font-semibold mb-4">Tags</h2>
-        <div class="flex flex-wrap gap-2">
+        <button id="toggleCategories" class="flex items-center gap-2 text-xl font-semibold mb-4 hover:text-blue-600 transition-colors">
+            <span>Categories List</span>
+            <svg id="toggleIcon" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <div id="categoriesContainer" class="flex flex-wrap gap-2">
             <?php
-            $tags = get_tags(array(
+            $categories = get_categories(array(
                 'hide_empty' => true
             ));
-            if ($tags) {
-                foreach($tags as $tag) {
-                    $tag_link = get_tag_link($tag->term_id);
-                    echo '<a href="' . $tag_link . '" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm ' . (is_tag($tag->term_id) ? 'bg-blue-500 text-white' : '') . '">';
-                    echo $tag->name;
-                    echo ' (' . $tag->count . ')';
+            if ($categories) {
+                foreach($categories as $category) {
+                    $category_link = get_category_link($category->term_id);
+                    echo '<a href="' . $category_link . '" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-sm ' . (is_category($category->term_id) ? 'bg-blue-500 text-white' : '') . '">';
+                    echo $category->name;
+                    echo ' (' . $category->count . ')';
                     echo '</a>';
                 }
             }
@@ -28,13 +33,13 @@
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
-		     <?php if (has_post_thumbnail()) : ?>
-<div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
-    <?php the_post_thumbnail('thumbnail', [
-        'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
-	'loading' => 'eager'
-    ]); ?>
-</div>
+                <?php if (has_post_thumbnail()) : ?>
+                    <div class="absolute inset-0 z-0 opacity-40" style="display: flex; justify-content: flex-end; align-items: center;">
+                        <?php the_post_thumbnail('thumbnail', [
+                            'class' => 'w-auto h-auto max-w-[70%] max-h-[80%] object-contain mr-4',
+                            'loading' => 'eager'
+                        ]); ?>
+                    </div>
                 <?php endif; ?>
                 
                 <div class="relative z-10">
@@ -67,5 +72,26 @@
         <p class="text-gray-600">not found</p>
     <?php endif; ?>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('toggleCategories');
+    const container = document.getElementById('categoriesContainer');
+    const icon = document.getElementById('toggleIcon');
+    
+    container.style.display = 'none';
+    icon.style.transform = 'rotate(-90deg)';
+    
+    toggleBtn.addEventListener('click', function() {
+        if (container.style.display === 'none') {
+            container.style.display = 'flex';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            container.style.display = 'none';
+            icon.style.transform = 'rotate(-90deg)';
+        }
+    });
+});
+</script>
 
 <?php get_footer(); ?>

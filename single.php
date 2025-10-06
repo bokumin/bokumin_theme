@@ -61,7 +61,7 @@ $content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; p
 $content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
 
                 // リンクのスタイルを変更
-		$content = str_replace('<a', '<a class="text-blue-500 hover:text-blue-700 underline"', $content);
+		$content = str_replace('<a', '<a class="text-blue-600 hover:text-blue-900 underline"', $content);
 
                 
                 echo $content;
