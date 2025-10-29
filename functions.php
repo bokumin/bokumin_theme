@@ -87,4 +87,24 @@ add_filter('upload_mimes', function($mime_types) {
     $mime_types['webp'] = 'image/webp';
     return $mime_types;
 });
+
+function custom_details_style() {
+    ?>
+    <style>
+        .wp-block-details summary,
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #9ca3af;
+            margin-bottom: 1rem;
+        }
+        .wp-block-details summary:hover,
+        details summary:hover {
+            color: #9ca3af ;
+        }
+    </style>
+    <?php
+}
+add_action('wp_head', 'custom_details_style');
 ?>

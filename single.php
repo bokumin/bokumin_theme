@@ -44,23 +44,17 @@
                 $content = apply_filters('the_content', $content);
                 $content = str_replace('<p>', '<p class="mb-6 leading-relaxed">', $content);
                 
-                // ブロッククォートの前後の間隔を広げる
                 $content = str_replace('<blockquote>', '<blockquote class="border-l-4 border-gray-300 pl-4 my-12 italic text-lg">', $content);
                 
-                // 大見出しの前後の間隔を広げる
                 $content = preg_replace('/<h2>/', '<h2 class="text-2xl font-bold mt-16 mb-8">', $content);
                 
-                // 中見出しの前後の間隔を広げる
                 $content = preg_replace('/<h3>/', '<h3 class="text-xl font-bold mt-12 mb-6">', $content);
                 
-                // コードブロックの前後の間隔を広げる
                 $content = str_replace('<pre>', '<pre class="my-12">', $content);
                 
-                // リストの前後の間隔を広げる
 $content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; padding-left: 2rem;">', $content);
 $content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
 
-                // リンクのスタイルを変更
 		$content = str_replace('<a', '<a class="text-blue-600 hover:text-blue-900 underline"', $content);
 
                 
