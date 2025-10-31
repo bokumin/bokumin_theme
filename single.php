@@ -1,4 +1,26 @@
 <?php get_header(); ?>
+<style>
+.prose p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.625;
+}
+
+@media (min-width: 768px) {
+    .prose p {
+        font-size: 1.125rem;
+    }
+}
+.wp-block-kevinbatdorf-code-block-pro {
+    font-size: 0.875rem !important; 
+}
+
+@media (min-width: 768px) {
+    .wp-block-kevinbatdorf-code-block-pro {
+        font-size: 0.95rem !important;
+    }
+}
+</style>
 <main class="container mx-auto px-4 py-8 max-w-4xl">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
         <article class="bg-white rounded-lg shadow-lg p-8 mb-12">
@@ -42,8 +64,7 @@
                 <?php 
                 $content = get_the_content();
                 $content = apply_filters('the_content', $content);
-                $content = str_replace('<p>', '<p class="text-lg mb-6 leading-relaxed">', $content);
-                
+                $content = str_replace('<p>', '<p class="text-base md:text-lg mb-6 leading-relaxed">', $content); 
                 $content = str_replace('<blockquote>', '<blockquote class="border-l-4 border-gray-300 pl-4 my-12 italic text-lg">', $content);
                 
                 $content = preg_replace('/<h2>/', '<h2 class="text-2xl font-bold mt-16 mb-8">', $content);
@@ -51,9 +72,8 @@
                 $content = preg_replace('/<h3>/', '<h3 class="text-xl font-bold mt-12 mb-6">', $content);
                 
                 $content = str_replace('<pre>', '<pre class="my-12">', $content);
-                
-$content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; padding-left: 2rem;">', $content);
-$content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
+		$content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; padding-left: 2rem;">', $content);
+		$content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
 
 		$content = str_replace('<a', '<a class="text-blue-600 hover:text-blue-900 underline"', $content);
 

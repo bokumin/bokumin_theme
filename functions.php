@@ -106,5 +106,4 @@ function custom_details_style() {
     </style>
     <?php
 }
-add_action('wp_head', 'custom_details_style');
 ?>
