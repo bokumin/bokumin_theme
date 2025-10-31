@@ -42,7 +42,7 @@
                 <?php 
                 $content = get_the_content();
                 $content = apply_filters('the_content', $content);
-                $content = str_replace('<p>', '<p class="mb-6 leading-relaxed">', $content);
+                $content = str_replace('<p>', '<p class="text-lg mb-6 leading-relaxed">', $content);
                 
                 $content = str_replace('<blockquote>', '<blockquote class="border-l-4 border-gray-300 pl-4 my-12 italic text-lg">', $content);
                 
