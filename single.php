@@ -1,20 +1,10 @@
 <?php get_header(); ?>
 <style>
-.prose p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.625;
-}
-
 @media (min-width: 768px) {
     .prose p {
         font-size: 1.125rem;
     }
 }
-.wp-block-kevinbatdorf-code-block-pro {
-    font-size: 0.875rem !important; 
-}
-
 @media (min-width: 768px) {
     .wp-block-kevinbatdorf-code-block-pro {
         font-size: 0.95rem !important;
@@ -64,7 +54,7 @@
                 <?php 
                 $content = get_the_content();
                 $content = apply_filters('the_content', $content);
-                $content = str_replace('<p>', '<p class="text-base md:text-lg mb-6 leading-relaxed">', $content); 
+                $content = str_replace('<p>', '<p class="md:text-lg mb-6 leading-relaxed">', $content); 
                 $content = str_replace('<blockquote>', '<blockquote class="border-l-4 border-gray-300 pl-4 my-12 italic text-lg">', $content);
                 
                 $content = preg_replace('/<h2>/', '<h2 class="text-2xl font-bold mt-16 mb-8">', $content);
