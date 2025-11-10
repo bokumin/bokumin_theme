@@ -7,7 +7,7 @@
 }
 @media (min-width: 768px) {
     .wp-block-kevinbatdorf-code-block-pro {
-        font-size: 0.95rem !important;
+        font-size: 0.9375rem !important;
     }
 }
 </style>
