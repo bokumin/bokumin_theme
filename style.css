@@ -1,10 +1,10 @@
 /*
 Theme Name: bokumin
-Theme URI: https://bokumin45.server-on.net
+Theme URI: https://bokumin.org
 Author: bokumin
-Author URI: https://bokumin45.server-on.net
+Author URI: https://bokumin.org
 Description: for only me
-Version: 1.0
+Version: 1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: bokumin
@@ -41,6 +41,85 @@ Text Domain: bokumin
     position: relative;
 }
 
+.prose > * {
+    margin-bottom: 1.5rem;
+}
+
+.prose > *:last-child {
+    margin-bottom: 0;
+}
+
+.prose p {
+    line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+    .prose p {
+        font-size: 1.125rem;
+    }
+}
+
+.prose h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-top: 3.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.prose h3 {
+    font-size: 1.3rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+}
+
+.prose h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .prose h2 {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+    }
+
+    .prose h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    .prose h4 {
+        font-size: 1.25rem;
+    }
+}
+
+.prose blockquote {
+    border-left-width: 4px;
+    border-color: #d1d5db;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #4b5563;
+}
+
+.prose figure,
+.prose .wp-block-image,
+.prose img {
+    height: auto;
+    max-width: 100%;
+}
+
+.prose pre,
+.wp-block-code,
+[class*="code-block"] {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    background-color: #f3f4f6;
+}
 
 .prose ul {
     list-style-type: disc !important;
@@ -54,4 +133,21 @@ Text Domain: bokumin
 
 .prose li {
     margin-bottom: 0.5rem !important;
+}
+
+.prose a {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+}
+
+.prose a:hover {
+    color: #1e3a8a;
+}
+
+@media (min-width: 768px) {
+    [class*="code-block"] {
+        font-size: 0.9375rem !important;
+    }
 }

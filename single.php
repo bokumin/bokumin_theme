@@ -1,106 +1,77 @@
 <?php get_header(); ?>
+<main class="container mx-auto px-4 py-8 max-w-4xl">
 <style>
-@media (min-width: 768px) {
-    .prose p {
-        font-size: 1.125rem;
-    }
-}
-@media (min-width: 768px) {
-    .wp-block-kevinbatdorf-code-block-pro {
-        font-size: 0.9375rem !important;
-    }
+.meta-links a {
+    color: #111827;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 </style>
-<main class="container mx-auto px-4 py-8 max-w-4xl">
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        <article class="bg-white rounded-lg shadow-lg p-8 mb-12">
-            <header class="mb-12">
-                <h1 class="text-3xl font-bold mb-8"><?php the_title(); ?></h1>
-                
-                <div class="flex flex-wrap items-center text-gray-600 mb-4 gap-4">
-                    <time datetime="<?php echo get_the_date('c'); ?>" class="flex items-center">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        <?php echo get_the_date(); ?>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<article class="bg-white rounded-lg shadow-lg p-8 mb-12">
+<header class="mb-12">
+<h1 class="text-3xl font-bold mb-8"><?php the_title(); ?></h1>
+<div class="text-gray-600 mb-4">
+                <div class="flex flex-wrap items-center gap-4 mb-2">
+                    <time datetime="<?php echo get_the_date('c'); ?>" class="flex items-center text-gray-500" title="Published">
+                        Published:&nbsp;<span class="text-gray-900"><?php echo get_the_date('Y/m/d H:i'); ?></span>
                     </time>
-
-                    <!-- カテゴリー -->
+                    <?php if ( get_the_date('Ymd') !== get_the_modified_date('Ymd') ) : ?>
+                    <time datetime="<?php echo get_the_modified_date('c'); ?>" class="flex items-center text-gray-500" title="Update">
+                       Update:&nbsp;<span class="text-gray-900"><?php echo get_the_modified_date('Y/m/d H:i'); ?></span>
+                    </time>
+                    <?php endif; ?>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-4 meta-links text-gray-500">
                     <?php if (has_category()) : ?>
                     <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                        <?php the_category(', '); ?>
+                        Category:&nbsp;<?php the_category(', '); ?>
                     </div>
                     <?php endif; ?>
 
                     <?php if (has_tag()) : ?>
                     <div class="flex flex-wrap gap-2">
-                        <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                        </svg>
-                        <?php the_tags('', ' ', ''); ?>
+                        Tag:<?php the_tags('', ' ', ''); ?>
                     </div>
                     <?php endif; ?>
                 </div>
-            </header>
-
-            <div class="prose max-w-none">
-                <?php 
-                $content = get_the_content();
-                $content = apply_filters('the_content', $content);
-                $content = str_replace('<p>', '<p class="md:text-lg mb-6 leading-relaxed">', $content); 
-                $content = str_replace('<blockquote>', '<blockquote class="border-l-4 border-gray-300 pl-4 my-12 italic text-lg">', $content);
-                
-                $content = preg_replace('/<h2>/', '<h2 class="text-2xl font-bold mt-16 mb-8">', $content);
-                
-                $content = preg_replace('/<h3>/', '<h3 class="text-xl font-bold mt-12 mb-6">', $content);
-                
-                $content = str_replace('<pre>', '<pre class="my-12">', $content);
-		$content = str_replace('<ul>', '<ul class="my-8" style="list-style-type: disc; padding-left: 2rem;">', $content);
-		$content = str_replace('<ol>', '<ol class="my-8" style="list-style-type: decimal; padding-left: 2rem;">', $content);
-
-		$content = str_replace('<a', '<a class="text-blue-600 hover:text-blue-900 underline"', $content);
-
-                
-                echo $content;
-                ?>
             </div>
+        </header>
 
-            <footer class="mt-12 pt-6 border-t border-gray-200">
-                <nav class="flex flex-wrap justify-between gap-4">
-                    <?php
-                    $prev_post = get_previous_post();
-                    $next_post = get_next_post();
-                    ?>
-                    
-                    <?php if ($prev_post) : ?>
-                        <a href="<?php echo get_permalink($prev_post); ?>" class="flex items-center text-teal-500 hover:text-teal-700 underline">
-                            <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="19" y1="12" x2="5" y2="12"></line>
-                                <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg>
-                            Prev
-                        </a>
-                    <?php endif; ?>
-                    
-                    <?php if ($next_post) : ?>
-                        <a href="<?php echo get_permalink($next_post); ?>" class="flex items-center text-teal-500 hover:text-teal-700 underline">
-                            Next
-                            <svg class="w-6 h-6 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                    <?php endif; ?>
-                </nav>
-            </footer>
-        </article>
-    <?php endwhile; endif; ?>
+        <div class="prose max-w-none">
+            <?php the_content(); ?>
+        </div>
+
+        <footer class="mt-12 pt-6 border-t border-gray-200">
+            <nav class="flex flex-wrap justify-between gap-4">
+                <?php
+                $prev_post = get_previous_post();
+                $next_post = get_next_post();
+                ?>
+                
+                <?php if ($prev_post) : ?>
+                    <a href="<?php echo get_permalink($prev_post); ?>" class="flex items-center text-teal-500 hover:text-teal-700 underline">
+                        <svg class="w-6 h-6 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Prev
+                    </a>
+                <?php endif; ?>
+                
+                <?php if ($next_post) : ?>
+                    <a href="<?php echo get_permalink($next_post); ?>" class="flex items-center text-teal-500 hover:text-teal-700 underline">
+                        Next
+                        <svg class="w-6 h-6 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                <?php endif; ?>
+            </nav>
+        </footer>
+    </article>
+<?php endwhile; endif; ?>
 </main>
 <?php get_footer(); ?>
