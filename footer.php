@@ -20,7 +20,7 @@
                 </form>
             </div>
         <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p data-i18n="copyright">&copy; 2024 bokumin. All rights reserved.</p>
+            <p data-i18n="copyright">&copy; 2022 bokumin. All rights reserved.</p>
         </div>
     </div>
 </footer>
