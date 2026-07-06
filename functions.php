@@ -179,3 +179,15 @@ function custom_embed_iframe_inner_styles() {
     </style>';
 }
 add_action('embed_head', 'custom_embed_iframe_inner_styles');
+
+remove_action('wp_head', 'wp_generator');
+
+function restrict_rest_users_endpoint($result, $server, $request) {
+    if (strpos($request->get_route(), '/wp/v2/users') !== false) {
+        if (!is_user_logged_in()) {
+            return new WP_Error('rest_forbidden', __('REST API access is restricted.'), array('status' => 403));
+        }
+    }
+    return $result;
+}
+add_filter('rest_pre_dispatch', 'restrict_rest_users_endpoint', 10, 3);
