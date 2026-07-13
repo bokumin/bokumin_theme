@@ -31,7 +31,7 @@
 <main class="container mx-auto px-4 py-8 max-w-4xl">
     <article class="relative bg-white rounded-lg shadow-lg p-8 mb-12 overflow-hidden">
             <h1 class="text-3xl font-bold mb-6">404 Not Found</h1>
-            <p class="text-gray-600 mb-8">お探しのページは存在しないか、移動した可能性があります。</p>
+            <p class="text-gray-600 mb-8">Oops! this page is not found..</p>
         <div class="ascii-mail-container">
             <pre>
                    _ov
